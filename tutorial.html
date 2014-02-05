@@ -1,0 +1,180 @@
+<div class="row">
+    <div class="span12">
+        <div id="modal" class="modal hide fade" style="width:550px; height:490px;">
+            <div class="modal-header">
+                <h3 id="model_title"><span id="model_title_text"></span></h3>
+            </div>
+            <div id="0" class="modal-body" style="display:none; float:center; margin:0 auto; text-align:center; height:350px;">
+                <p>
+                        <span id="0_text"></span>
+                </p>
+                <span id="societic_logo_tutorial" title="">
+                        <img src="/cellspotting/static/img/tutorial/socientize.png" width="300px" alt="Socientize Project" title="Socientize Project">
+                </span>
+                <!--span id="dga_logo_tutorial" title="">
+                        <input type="image" src="/static/img/dga.png" width="180px" alt="DGA">
+                </span-->                
+            </div>
+            <div id="1" class="modal-body" style="display:none; float:center; margin: 0 auto; text-align:center; height:350px;">
+                <iframe width="464" height="349" src="" frameborder="0" style="vertical-align:middle;" id="video_tutorial"></iframe>
+            </div>
+            <div id="2" class="modal-body" style="display:none; float:center; margin:0 auto; text-align:justify; height:350px;">
+                <p style="vertical-align:middle;">
+                        <img id="titlebar" width="500px" title="" src="/cellspotting/static/img/tutorial/titleBarTutorial.png"><br><br>
+                        <span id="2_text_1"></span>
+                        <img id="channels" width="170px" title="" src="/cellspotting/static/img/tutorial/channelsTutorial.png" align="right" style="margin: 0 10px;">
+                        <span id="2_text_2"></span>
+                        <img id="video" width="35px" title="" src="/cellspotting/static/img/tutorial/videoTutorial.png" style="margin: 0 5px;" align="center">
+                        <img id="info" width="35px" title="" src="/cellspotting/static/img/tutorial/infoTutorial.png" style="margin: 0 5px;" align="center">
+                        <img id="vish" width="35px" title="" src="/cellspotting/static/img/tutorial/vishubTutorial.png" style="margin: 0 10px 0 5px;" align="center">
+                        <img id="questionnaire" width="35px" title="" src="/cellspotting/static/img/tutorial/questionnaireTutorial.png" style="margin: 0 10px 0 5px;" align="center">
+                        <img id="didactic_unit" width="35px" title="" src="/cellspotting/static/img/tutorial/didacticUnitTutorial.png" style="margin: 0 10px 0 5px;" align="center">                        
+                </p>
+            </div>
+            <div id="3" class="modal-body" style="display:none; float:center; margin:0 auto; text-align:justify; height:350px; vertical-align:middle;">
+                <p style="vertical-align:middle;">
+                        <span id="3_text"></span>
+                        <img id="arrow" width="420px" title="" src="/cellspotting/static/img/tutorial/analysisTutorial.png" style="margin: 0 10px;" align="center">
+                </p>
+            </div>
+            <div id="4" class="modal-body" style="display:none; float:center; margin:0 auto; text-align:justify; height:350px; vertical-align:middle;">
+                <p style="vertical-align:middle;">
+                        <span id="4_text"></span><br><br>
+                        <img id="response" width="210px" title="" src="/cellspotting/static/img/tutorial/responseTutorial.png" style="margin: 0 10px; text-align:center;" align="center">
+                </p>
+            </div>
+            <div id="5" class="modal-body" style="display:none; float:center; margin:0 auto; text-align:justify; height:350px; vertical-align:middle;">
+                <p style="vertical-align:middle;">
+                        <img id="progressbar" width="300px" title="" src="/cellspotting/static/img/tutorial/progressBarTutorial.jpg" align="middle"><br><br>
+                        <span id="5_text_1"></span>
+                        <!--img id="arrowTutorial" width="150px" title="" src="/static/img/cellsImg/arrowTutorial.png" style="margin: 0 10px;" align="right"-->
+                        <span id="5_text_2"></span>
+                        <a id="didactic_unit_icon_download" href=# target="_blank" title=""><span id="5_text_3"></span></a>
+                        <span id="5_text_4"></span>
+                </p>
+            </div>
+
+            <div class="modal-footer" style="vertical-align:bottom;">
+                <a id="prevBtn" href="#" onclick="showStep('prev')" class="btn"><span id="prevBtn_text"></span></a>
+                <a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success"><span id="nextBtn_text"></span></a>
+                <a id="startContrib" href="../cellspotting/newtask" class="btn btn-primary" style="display:none"><i class="icon-thumbs-up"></i><span id="startContrib_text"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/pybossa/pybossa.js"></script>
+<script type="text/javascript" src="/cellspotting/static/js/jquery.i18n.min.js"></script>
+<script type="text/javascript" src="/cellspotting/static/js/cellspotting-internationalization.js"></script>
+
+<script>
+    
+    var language;
+    var dict;
+    
+    pybossa.setEndpoint("/pybossa");
+    pybossa.getSettings().done(function(data){
+        language = data.language;
+        
+        if (language == null) {
+            // Detect browser language
+            var userLang = navigator.language || navigator.userLanguage;
+            
+            if (userLang.indexOf("en") != -1)
+                language = "en";
+            else if (userLang.indexOf("es") != -1)
+                language = "es";
+            else if (userLang.indexOf("pt") != -1)
+                language = "pt";
+        }
+        
+        console.log("1"+language);
+        
+        switch(language){
+            case "en": dict = en_US_dict; break;
+            case "pt": dict = pt_dict;    break;
+            case "es": dict = es_dict;    break;
+            default:  dict = default_dict;
+        }
+
+        $.i18n.setDictionary(dict);    
+    
+        $("#model_title_text").text($.i18n._('model_title_text'));
+        $('#0_text').html($.i18n._('0_text'));
+        $('#2_text_1').html($.i18n._('2_text_1'));
+        $('#2_text_2').html($.i18n._('2_text_2'));
+        $('#3_text').html($.i18n._('3_text'));
+        $('#4_text').html($.i18n._('4_text'));
+        $('#5_text_1').html($.i18n._('5_text_1'));
+        $('#5_text_2').html($.i18n._('5_text_2'));
+        $('#5_text_3').html($.i18n._('5_text_3'));
+        $('#5_text_4').html($.i18n._('5_text_4'));
+        $('#societic_logo_tutorial').prop('title', $.i18n._('societic_logo_tutorial'));
+        $('#dga_logo_tutorial').prop('title', $.i18n._('dga_logo_tutorial'));
+        $('#titlebar').prop('title', $.i18n._('titlebar'));
+        $('#channels').prop('title', $.i18n._('channels'));
+        $('#video').prop('title', $.i18n._('video'));
+        $('#info').prop('title', $.i18n._('info'));
+        $('#vish').prop('title', $.i18n._('vish'));
+        $('#arrow').prop('title', $.i18n._('arrow'));
+        $('#progressbar').prop('title', $.i18n._('progressbar'));
+        $('#arrowTutorial').prop('title', $.i18n._('arrowTutorial'));
+        
+        $("#prevBtn_text").text($.i18n._('prevBtn_text'));
+        $("#nextBtn_text").text($.i18n._('nextBtn_text'));
+        $("#startContrib_text").text($.i18n._('startContrib_text'));
+        
+        $('#video_tutorial').attr('src', $.i18n._('video_tutorial'));
+        
+        $("#model_title").text($.i18n._('model_title_1'));
+        
+        $("#didactic_unit_icon_download").attr("href", $.i18n._('didactic_unit_download'));
+        $('#didactic_unit_icon').prop('title', $.i18n._('didactic_unit_icon_download_title'));
+
+    });
+            
+    var step = -1;
+    
+    function showStep(action) {
+        $("#" + step).hide();
+        if (action == 'next') {
+            step = step + 1;
+        }
+        
+        if (action == 'prev') {
+            step = step - 1;
+        }
+        
+        if (step == 0) {
+            $("#prevBtn").hide();
+            $("#nextBtn").show();
+            $("#startContrib").hide();
+            $("#model_title").text($.i18n._('model_title_1'));
+        }
+        else if (step == 1 ) {
+            $("#prevBtn").show();
+            $("#model_title").text($.i18n._('model_title_2'));
+        }
+        else if (step == 2 ) {
+            $("#model_title").text($.i18n._('model_title_3'));
+        }
+        else if (step == 3 ) {
+            $("#model_title").text($.i18n._('model_title_4'));
+        }
+        else if (step == 4 ) {
+            $("#startContrib").hide();
+            $("#nextBtn").show();
+            $("#model_title").text($.i18n._('model_title_5'));
+        }
+        else if (step == 5 ) {
+            $("#prevBtn").show();
+            $("#nextBtn").hide();
+            $("#startContrib").show();
+            $("#model_title").text($.i18n._('model_title_6'));
+        }
+        $("#" + step).show();
+    }
+
+    showStep('next');
+    $("#modal").modal('show');
+</script>

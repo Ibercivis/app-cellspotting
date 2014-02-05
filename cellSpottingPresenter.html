@@ -1,0 +1,1393 @@
+<link rel="stylesheet" href="/cellspotting/static/js/jquery-ui-1.10.1.custom/development-bundle/themes/base/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="/cellspotting/static/js/cellspotting.css">
+ 
+<div id="dialog-end" title="Task completed!"><span id="dialog_end_text"></span>
+<span id="questionnaire" style="display:none"><span id="questionnaire_text_1"></span><u><a id="questionnaire_link" href=#><span id="questionnaire_text_2"></span></a></u>.</span>
+<br><br><button id="close_dialog_button"><span id="close_dialog_button_text"></span></button><br><br></div>
+
+<img id="alive_logo" src="/cellspotting/static/img/icons/alive.png" alt="" style="display:none;">
+<img id="dead_logo" src="/cellspotting/static/img/icons/dead.png" alt="" style="display:none;">
+<img id="notsure_logo" src="/cellspotting/static/img/icons/notsure.png" alt="" style="display:none;">
+<img id="grouped_logo" src="/cellspotting/static/img/icons/grouped.png" alt="" style="display:none;">
+<img id="scattered_logo" src="/cellspotting/static/img/icons/scattered.png" alt="" style="display:none;">
+<img id="release_logo" src="/cellspotting/static/img/icons/release.png" alt="" style="display:none;">
+<img id="multinuclei_logo" src="/cellspotting/static/img/icons/multinuclei.png" alt="" style="display:none;">
+<img id="alive_icon" src="/cellspotting/static/img/icons/alive_icon.png" alt="" style="display:none;">
+<img id="dead_icon" src="/cellspotting/static/img/icons/dead_icon.png" alt="" style="display:none;">
+<img id="notsure_icon" src="/cellspotting/static/img/icons/notsure_icon.png" alt="" style="display:none;">
+<img id="grouped_icon" src="/cellspotting/static/img/icons/grouped_icon.png" alt="" style="display:none;">
+<img id="scattered_icon" src="/cellspotting/static/img/icons/scattered_icon.png" alt="" style="display:none;">
+<img id="release_icon" src="/cellspotting/static/img/icons/release_icon.png" alt="" style="display:none;">
+<img id="multinuclei_icon" src="/cellspotting/static/img/icons/multinuclei_icon.png" alt="" style="display:none;">
+
+<div id="app_content">
+        
+        <!-- Image to be analysed, forms and answer buttons -->
+        <div id="analysis" style="text-align:center">
+                <table id="title_table">
+                        <tr>
+                                <td id="title_td">
+                                        <h1 id="title_text">#</h1>
+                                </td>
+                                <td>
+                                        <table id="additional_info"> <!-- Table for the second cell contending channels and info and video buttons to be independent -->
+                                                <tr>
+                                                        <td>
+                                                            <b id="channel_tr">#</b>
+                                                        </td>
+                                                        <td> <!-- Cell for the channels -->
+                                                                <table id="channel_table"> <!-- Table for the channels to be independent of the buttons -->
+                                                                        <tr>
+                                                                                <td><input type="radio" name="channel" value="normal" onclick="changeChannel('normal')" title="" id="radio_button_normal"><span id="radio_button_normal_text"></br></td>
+                                                                                <td><input type="radio" name="channel" value="blue" onclick="changeChannel('blue')" title="" id="radio_button_blue"><span id="radio_button_blue_text"></br></td>
+                                                                                <td><input type="radio" name="channel" value="green" onclick="changeChannel('green')" title="" id="radio_button_green"><span id="radio_button_green_text"></br></td>
+                                                                        </tr>
+                                                                </table>
+                                                        </td>
+                                                        <td id="video_td"> <!-- Cell for the video dialog -->
+                                                                <div id="dialog-video" title="Video">
+                                                                </div>
+                                                                <input type="image" src="/cellspotting/static/img/buttons/videoIcon.png" id="opener-video" width="32" title="" onmouseover="this.src='/cellspotting/static/img/buttons/videoIconHover.png'" onmouseout="this.src='/cellspotting/static/img/buttons/videoIcon.png'">
+                                                        </td>
+                                                        <td id="info_td"> <!-- Cell for the info dialog -->
+                                                                <div id="dialog-info" title="Information">
+                                                                        <span id="alive_form_info">
+                                                                            <span id="alive_form_info_1"></span>
+                                                                            <a id="didactic_unit_download" href=# target="_blank"><span id="alive_didactic_unit"></span></a>.
+                                                                        </span>        
+                                                                        <span id="release_form_info">
+                                                                              <span id="release_form_info_1"></span>
+                                                                              <a id="didactic_unit_download" href=# target="_blank"><span id="release_didactic_unit"></span></a>.
+                                                                              <br><br>
+                                                                              <video width="440" controls autoplay style="text-align:center"><source src="/cellspotting/static/img/tutorial/feb2013-75.ogg" type="video/ogg"><source src="/cellspotting/static/img/tutorial/feb2013-75.mp4" type="video/mp4"><source src="/cellspotting/static/img/tutorial/feb2013-75.webm" type="video/webm"><object data="/cellspotting/static/img/tutorial/feb2013-75.mp4" width="440"><embed width="440" src="/cellspotting/static/img/tutorial/feb2013-75.swf"></object></video>   
+                                                                        </span>        
+                                                                        <span id="mitocohondria_form_distribution_info">
+                                                                            <span id="mitocohondria_form_distribution_info_1"></span>
+                                                                            <a id="didactic_unit_download" href=# target="_blank"><span id="mitochondria_didactic_unit"></span></a>.
+                                                                        </span>        
+                                                                        <span id="remarks_form_info">
+                                                                               <span id="remarks_form_info_1"></span>
+                                                                               <img id="huge_cell_info" class="images_tutorial" title="" width="150px" src="/cellspotting/static/img/tutorial/hugeCell.png"><br><br>
+                                                                               <span id="remarks_form_info_2"></span>
+                                                                               <img id="not_clear_mechanism_info" class="images_tutorial" title="" width="120px" src="/cellspotting/static/img/tutorial/apoptosisRelease.png"><br><br>
+                                                                               <span id="remarks_form_info_3"></span>
+                                                                               <img id="granulated_info" title="" width="250px" src="/cellspotting/static/img/tutorial/granulatedCells.png" class="images_tutorial"><br><br>
+                                                                               <!--img id="multinucleated_info" title="Example of multinucleated cell" width="250px" src="/cellspotting/static/img/multinucleated.png"-->
+                                                                               <span id="remarks_form_info_4"></span>
+                                                                               <a id="didactic_unit_download" href=# target="_blank"><span id="remarks_didactic_unit"></span></a>.<br><br>
+
+                                                                        </span>        
+                                                                </div>
+                                                                <input type="image" src="/cellspotting/static/img/buttons/infoIcon.png" id="opener-info" width="32" title="" onmouseover="this.src='/cellspotting/static/img/buttons/infoIconHover.png'" onmouseout="this.src='/cellspotting/static/img/buttons/infoIcon.png'">
+                                                        </td>
+                                                        <td id="vish_td"> <!-- Cell for the vish dialog -->
+                                                                <div id="dialog-vish" title="Virtual Excursion">
+                                                                        <span id="vish">
+                                                                                    <iframe id="ViSH" src="http://vishub.org/s/knws4" width="883px" height="690px" scrolling="auto"></iframe>
+                                                                        </span>        
+                                                                </div>
+                                                                <input type="image" src="/cellspotting/static/img/buttons/vishIcon.png" id="opener-vish" width="32" title="" onmouseover="this.src='/cellspotting/static/img/buttons/vishIconHover.png'" onmouseout="this.src='/cellspotting/static/img/buttons/vishIcon.png'">
+                                                        </td>
+                                                        <td id="questionnaire_td"> <!-- Cell for the questionnaire -->
+                                                                <a id="questionnaire_ref" href=#  target="_blank" title=""><img id="questionnaire_icon" alt="" src="/cellspotting/static/img/buttons/questionnaireIcon.png" title="" onmouseover="this.src='/cellspotting/static/img/buttons/questionnaireIconHover.png'" onmouseout="this.src='/cellspotting/static/img/buttons/questionnaireIcon.png'"></a>
+                                                        </td>
+                                                        <td id="didactic_unit_td"> <!-- Cell for the didactic unit download -->
+                                                                <a id="didactic_unit_icon_download" href=# target="_blank" title=""><img id="didactic_unit_icon" alt="" src="/cellspotting/static/img/buttons/didacticUnitIcon.png" title="" onmouseover="this.src='/cellspotting/static/img/buttons/didacticUnitIconHover.png'" onmouseout="this.src='/cellspotting/static/img/buttons/didacticUnitIcon.png'"></a>
+                                                        </td>
+                                                </tr>
+                                        </table>   
+                                </td>
+                        </tr>
+                </table>
+                <table id="analysis_table" style="display:none">
+                        <!-- First row contains the photo to be analysed in the first column and the forms in the second one 
+                             The second row contains the submission buttons in the second column (first nothing) -->
+                        <tr>
+                                <td> 
+                                        <table id="analysis_td">
+                                                <tr>
+                                                        <td>
+                                                                
+                                                                <div id="analysis_photo_frame" width="524" height="391">
+                                                                    <canvas id="canvasResponses" width="524" height="391">
+                                                                        <p>Unfortunately, your browser is currently unsupported by our web application.  We are sorry for the inconvenience. Please use one of the supported browsers listed below, or draw the image you want using an offline tool.</p>
+                                                                        <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a href="http://www.mozilla.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.</p>
+                                                                    </canvas>
+                                                                    <span id="missingCellsText"></span>
+                                                                    <span id="analysis_photo">
+                                                                        <!-- Picture of the current uTask -->
+                                                                        <img id="photo-currentTask" src="#"/>  
+                                                                    </span>
+                                                                    <span id="analysis_photo_blue">
+                                                                        <!-- Picture of the current uTask in blue channel -->
+                                                                        <img id="photo-currentTask-blue" src="#"/>  
+                                                                    </span>
+                                                                    <span id="analysis_photo_green">
+                                                                        <!-- Picture of the current uTask in green channel -->
+                                                                        <img id="photo-currentTask-green" src="#"/>  
+                                                                    </span>
+                                                                </div>
+                                                                <div class="triangle"></div>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>
+                                                                <table id="response_td">
+                                                                        <tr>
+                                                        <td id="forms_td">
+                                                                <table style="margin:0 auto">
+                                                                <tr>
+                                                                <td>
+                                                                
+                                                                <!-- Cells alive form: first columns contain the labels and the second ones the input text fields -->
+                                                                <span id="alive_form">
+                                                                    <img id="alive_img" title="" src="#" onclick="changeMode('alive')" onmouseover="onHover('alive')" onmouseout="onHoverOut('alive')"/>
+                                                                    <img id="dead_img" title="" src="#" onclick="changeMode('dead')" onmouseover="onHover('dead')" onmouseout="onHoverOut('dead')"/>
+                                                                    <img id="not_sure_alive_img" title="" src="#" onclick="changeMode('not_sure_alive')" onmouseover="onHover('not_sure_alive')" onmouseout="onHoverOut('not_sure_alive')"/>
+                                                                    <img id="remove_alive_img" title="" src="#" onclick="changeMode('remove_alive')" onmouseover="onHover('remove_alive')" onmouseout="onHoverOut('remove_alive')"/>
+                                                                    <img id="removeAll_alive_img" title="" src="#" onclick="clearCanvas()" onmouseover="onHover('removeAll_alive')" onmouseout="onHoverOut('removeAll_alive')"/>
+                                                                </span>
+                                        
+                                                                <span id="mitocohondria_form_distribution">
+                                                                        <!-- mitocohondria Distribution form -->
+                                                                        <img id="grouped_img" title="" src="#" onclick="changeMode('grouped')" onmouseover="onHover('grouped')" onmouseout="onHoverOut('grouped')"/>
+                                                                        <img id="scattered_img" title="" src="#" onclick="changeMode('scattered')" onmouseover="onHover('scattered')" onmouseout="onHoverOut('scattered')"/>
+                                                                        <img id="not_sure_mitochondria_img" title="" src="#" onclick="changeMode('not_sure_mitochondria')" onmouseover="onHover('not_sure_mitochondria')" onmouseout="onHoverOut('not_sure_mitochondria')"/>
+                                                                        <img id="remove_mitochondria_img" title="" src="#" onclick="changeMode('remove_mitochondria')" onmouseover="onHover('remove_mitochondria')" onmouseout="onHoverOut('remove_mitochondria')"/>
+                                                                        <img id="removeAll_mitochondria_img" title="" src="#" onclick="clearCanvas()" onmouseover="onHover('removeAll_mitochondria')" onmouseout="onHoverOut('removeAll_mitochondria')"/>
+                                                                </span>
+                                        
+                                                                <!-- release form: some sliders -->
+                                                                <span id="release_form">
+                                                                        <img id="release_img" title="" src="#" onclick="changeMode('release')" onmouseover="onHover('release')" onmouseout="onHoverOut('release')"/>
+                                                                        <img id="remove_release_img" title="" src="#" onclick="changeMode('remove_release')" onmouseover="onHover('remove_release')" onmouseout="onHoverOut('remove_release')"/>
+                                                                        <img id="removeAll_release_img" title="" src="#" onclick="clearCanvas()" onmouseover="onHover('removeAll_release')" onmouseout="onHoverOut('removeAll_release')"/>
+                                                                </span>
+                        
+                                                                <!-- Text area and a slider for foreseen remarks -->
+                                                                <span id="remarks_form">
+                                                                        <table>
+                                                                                <tr>
+                                                                                        <td style="padding-right: 0px; padding-left: 0px;">
+                                                                                            <img id="multinuclei_img" title="" src="#" onclick="changeMode('multinuclei')" onmouseover="onHover('multinuclei')" onmouseout="onHoverOut('multinuclei')"/>
+                                                                                            <img id="remove_multinuclei_img" title="" src="#" onclick="changeMode('remove_multinuclei')" onmouseover="onHover('remove_multinuclei')" onmouseout="onHoverOut('remove_multinuclei')"/>
+                                                                                            <img id="removeAll_multinuclei_img" title="" src="#" onclick="clearCanvas()" onmouseover="onHover('removeAll_multinuclei')" onmouseout="onHoverOut('removeAll_multinuclei')"/>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                                <!--b id="remarks_text">#</b><br-->
+                                                                                                <textarea cols="50" name="remarks" id="remarks_textarea" maxlength="500"></textarea> 
+                                                                                        </td>
+                                                                                </tr>
+                                                                        </table>
+                                                                </span>
+                                                        </td>
+                                                        </tr>
+                                                        </table>
+                                                        </td>
+                                                        </tr>
+                                                        </table>
+                                                        </td>
+                                                </tr>
+                                        </table>
+                                        <div id="progress_bar_div">
+                                                            <div id="progress_bar">
+                                                                <img id="progress_bar_img" title="" src="/cellspotting/static/img/progressBar/steps_1.jpg">
+                                                            </div>
+                                                            <div id="right_arrow" title="">
+                                                                <input type="image" src="/cellspotting/static/img/progressBar/rightArrow.png" name="rightArrow" onclick="changeuTask('next')" onmouseover="this.src='/cellspotting/static/img/progressBar/rightArrowHover.png'" onmouseout="this.src='/cellspotting/static/img/progressBar/rightArrow.png'">
+                                                            </div>
+                                                        </div>
+                                </td>
+                                <td>
+                                        <table id="samples" style="height: 575px">
+                                                <tr>
+                                                        <td>
+                                                        <br>    
+                                                        <span id="samples_alive_form">
+                                                                <span id="samples_alive_form_text"></span><br><br>
+                                                                <table>
+                                                                        <tr>
+                                                                                <td>
+                                                                                        <label class="example" id="example_alive"></label>
+                                                                                        <img id="alive_sample" width="418px" title="" src="/cellspotting/static/img/samples/liveCellsSamplesFinal.png">
+                                                                                </td>
+                                                                        <tr>
+                                                                        </tr>
+                                                                                <td>
+                                                                                        <label class="example" id="example_dead"></label>
+                                                                                        <img id="dead_sample" width="418px" title="" src="/cellspotting/static/img/samples/deadCellsSamplesFinal.png">
+                                                                                </td>
+                                                                        </tr>
+                                                                </table>
+                                                        </span>
+                                                        <span id="samples_mitocohondria_form_distribution">
+                                                                <span id="samples_mitocohondria_distribution_form_text"></span><br><br>
+                                                                <table>
+                                                                        <tr>
+                                                                                <td>
+                                                                                        <label class="example" id="example_mitocohondria_grouped"></label>
+                                                                                        <img id="mitocohondria_grouped_sample" title="" width="418px" src="/cellspotting/static/img/samples/clusteredCellsSamplesFinal.png">
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td>
+                                                                                        <label class="example" id="example_mitocohondria_scattered"></label>
+                                                                                        <img id="mitocohondria_scattered_sample" title="" width="418px" src="/cellspotting/static/img/samples/scatteredCellsSamplesFinal.png">
+                                                                                </td>
+                                                                        </tr>
+                                                                </table>
+                                                        </span>
+                                                        <span id="samples_release_form">
+                                                                <span id="samples_release_form_text"></span><br><br>
+                                                                <table>
+                                                                        <tr>
+                                                                                <td>
+                                                                                        <label class="example" id="example_release"></label>
+                                                                                        <img id="release_sample" title="" width="418px" src="/cellspotting/static/img/samples/releaseCellsSamplesFinal.png">
+                                                                                </td>
+                                                                        </tr>
+                                                                </table>
+                                                        </span>
+                                                        <span id="samples_remarks_form">
+                                                                <span id="samples_remarks_form_text"></span><br>      
+                                                                
+                                                                <table>
+                                                                        <tr>
+                                                                                <td>
+                                                                                        <label class="example" id="example_multinucleated_cell"></label>
+                                                                                        <img id="multinucleated_cell_sample" title="" width="418px" src="/cellspotting/static/img/samples/multinucleatedCellsSamplesFinal.png">
+                                                                                </td>
+                                                                        </tr>
+                                                                </table>
+                                                                <br><button id="finish_button" title="" onclick="changeuTask('next')"></button>    
+                                                        </span>
+                                                        </td>
+                                                </tr>
+                                        </table>
+                                </td>
+                        </tr>
+                </table>
+        </div>
+        
+        
+</div><!-- End of Skeleton Row -->
+
+<div class="row">
+    <!-- Success and Error Messages for the user --> 
+    <div class="span6 offset2" style="height:50px">
+        <div id="success" class="alert alert-success" style="display:none;">
+            <a class="close">×</a>
+            <span id="messages_answer_saved"></span>
+        </div>
+        <div id="loading" class="alert alert-info" style="display:none;">
+            <a class="close">×</a>
+            <span id="messages_loading"></span><button onclick="changeMode(1)">Add</button>
+                                                                    <button onclick="changeMode(2)">Remove</button>
+                                                                
+        </div>
+        <div id="taskcompleted" class="alert alert-info" style="display:none;">
+            <span id="messages_completed"></span>
+        </div>
+        <div id="finish" class="alert alert-success" style="display:none;">
+            <span id="messages_all_tasks"></span>
+            <br/>
+            <div class="alert-actions">
+                <a class="btn small" href="/"><span id="messages_go_back"></span></a>
+                <a class="btn small" href="/app"><span id="messages_check_other"></span></a>
+            </div>
+        </div>
+        <div id="error" class="alert alert-error" style="display:none;">
+            <a class="close">×</a>
+            <span id="messages_error"></span>
+        </div>
+    </div> <!-- End Success and Error Messages for the user -->
+</div> <!-- End of Row -->
+
+<script src="/cellspotting/static/js/browserstate-history.js-8eef026/scripts/bundled/html4+html5/jquery.history.js"></script>
+<script src="/cellspotting/static/js/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.js"></script>
+<script type="text/javascript" src="/cellspotting/static/js/jquery.i18n.min.js"></script>
+<script type="text/javascript" src="/cellspotting/static/js/cellspotting-internationalization.js"></script>
+<script type="text/javascript" src="/cellspotting/static/js/jquery.blockUI.js"></script>
+
+<script>
+
+// Set up the variable to go through the uTasks.
+var currentuTask = 0;
+var basename;
+var result = {};
+var task_id_aux;
+var num_cells;
+var deferred_global;
+
+var adding;
+var mode;
+var arrayResults = new Array(); 
+var canvas, contextResponses, tool;
+
+var missingCells = -1;
+
+var language;
+
+pybossa.setEndpoint("/pybossa");
+
+pybossa.getSettings().done(function(data){
+        language = data.language;
+        
+        if (language == null) {
+            // Detect browser language
+            var userLang = navigator.language || navigator.userLanguage;
+            
+            if (userLang.indexOf("en") != -1)
+                language = "en";
+            else if (userLang.indexOf("es") != -1)
+                language = "es";
+            else if (userLang.indexOf("pt") != -1)
+                language = "pt";
+        }
+        
+        switch(language){
+            case "en": var dict = en_US_dict; break;
+            case "pt": var dict = pt_dict;    break;
+            case "es": var dict = es_dict;    break;
+            default:  var dict = default_dict;
+        }
+
+        $.i18n.setDictionary(dict);
+        
+    });
+
+$("#remarks_textarea")
+  .focus(function() {
+        if (this.value === $.i18n._('remarks_text')) {
+            this.value = '';
+        }
+  })
+  .blur(function() {
+        if (this.value === '') {
+            this.value = $.i18n._('remarks_text');
+        }
+});
+
+$(window).load(function(){
+        $("#channel_tr").text($.i18n._('channel_tr'));
+        $('#radio_button_normal').prop('title', $.i18n._('radio_button_normal'));
+        $('#radio_button_normal_text').text($.i18n._('radio_button_normal_text'));
+        $('#radio_button_blue').prop('title', $.i18n._('radio_button_blue'));
+        $('#radio_button_blue_text').text($.i18n._('radio_button_blue_text'));
+        $('#radio_button_green').prop('title', $.i18n._('radio_button_green'));
+        $('#radio_button_green_text').text($.i18n._('radio_button_green_text'));
+        $('#dialog-video').prop('title', $.i18n._('dialog-video'));
+        $('#dialog-info').prop('title', $.i18n._('dialog-info'));
+        $('#opener-video').prop('title', $.i18n._('opener-video'));
+        $('#alive_form_info_1').html($.i18n._('alive_form_info'));
+        $('#alive_didactic_unit').html($.i18n._('5_text_3'));
+        $('#release_didactic_unit').html($.i18n._('5_text_3'));
+        $('#mitochondria_didactic_unit').html($.i18n._('5_text_3'));
+        $('#remarks_didactic_unit').html($.i18n._('5_text_3'));
+        $('#release_form_info_1').html($.i18n._('release_form_info_1'));
+        $('#mitocohondria_form_distribution_info_1').html($.i18n._('mitocohondria_form_distribution_info'));
+        $('#remarks_form_info_1').html($.i18n._('remarks_form_info_1'));
+        $('#remarks_form_info_2').html($.i18n._('remarks_form_info_2'));
+        $('#remarks_form_info_3').html($.i18n._('remarks_form_info_3'));
+        $('#remarks_form_info_4').html($.i18n._('remarks_form_info_4'));
+        $('#huge_cell_info').prop('title', $.i18n._('huge_cell_info'));
+        $('#not_clear_mechanism_info').prop('title', $.i18n._('not_clear_mechanism_info'));
+        $('#opener-info').prop('title', $.i18n._('opener-info'));
+        $('#opener-vish').prop('title', $.i18n._('opener-vish'));
+        $('#left_arrow_response').prop('title', $.i18n._('left_arrow_response'));
+        $("#missingCellsText").text($.i18n._('missingCellsText'));
+        $("#alive_img").attr('src', $.i18n._('alive_text_hover'));
+//$('#alive_img').prop('title', $.i18n._('alive_text_title'));
+        $("#dead_img").attr('src', $.i18n._('dead_text'));
+//$('#dead_img').prop('title', $.i18n._('dead_text_title'));
+        $("#not_sure_alive_img").attr('src', $.i18n._('not_sure_alive_text'));
+//$('#not_sure_alive_img').prop('title', $.i18n._('not_sure_alive_text_title'));
+        $("#grouped_img").attr('src', $.i18n._('grouped_text_hover'));
+//$('#grouped_img').prop('title', $.i18n._('grouped_text_title'));
+        $("#scattered_img").attr('src', $.i18n._('scattered_text'));
+//$('#scattered_img').prop('title', $.i18n._('scattered_text_title'));
+        $("#not_sure_mitochondria_img").attr('src', $.i18n._('not_sure_mitochondria_text'));
+//$('#not_sure_mitochondria_img').prop('title', $.i18n._('not_sure_mitochondria_text_title'));
+        $("#release_img").attr('src', $.i18n._('release_text'));
+//$('#release_img').prop('title', $.i18n._('release_text_title'));
+        $("#multinuclei_img").attr('src', $.i18n._('multinuclei_text'));
+//$('#multinuclei_img').prop('title', $.i18n._('multinuclei_text_title'));
+        $("#remove_alive_img").attr('src', $.i18n._('remove_text'));
+//$('#remove_alive_img').prop('title', $.i18n._('remove_text_title'));
+        $("#removeAll_alive_img").attr('src', $.i18n._('removeAll_text'));
+//$('#removeAll_alive_img').prop('title', $.i18n._('removeAll_text_title'));
+        $("#remove_mitochondria_img").attr('src', $.i18n._('remove_text'));
+//$('#remove_mitochondria_img').prop('title', $.i18n._('remove_text_title'));
+        $("#removeAll_mitochondria_img").attr('src', $.i18n._('removeAll_text'));
+//$('#removeAll_mitochondria_img').prop('title', $.i18n._('removeAll_text_title'));
+        $("#remove_release_img").attr('src', $.i18n._('remove_text'));
+//$('#remove_release_img').prop('title', $.i18n._('remove_text_title'));
+        $("#removeAll_release_img").attr('src', $.i18n._('removeAll_text'));
+//$('#removeAll_release_img').prop('title', $.i18n._('removeAll_text_title'));
+        $("#remove_multinuclei_img").attr('src', $.i18n._('remove_text'));
+//$('#remove_multinuclei_img').prop('title', $.i18n._('remove_text_title'));
+        $("#removeAll_multinuclei_img").attr('src', $.i18n._('removeAll_text'));
+//$('#remove_multinuclei_img').prop('title', $.i18n._('removeAll_text_title'));
+        $("#remarks_textarea").append($.i18n._('remarks_text'));
+        $('#right_arrow_response').prop('title', $.i18n._('right_arrow_response'));
+        $("#samples_alive_form_text").text($.i18n._('samples_alive_form_text'));
+        $('#example_alive').html($.i18n._('example_alive'));
+        $('#alive_sample').prop('title', $.i18n._('alive_sample'));
+        $('#example_dead').html($.i18n._('example_dead'));
+        $('#dead_sample').prop('title', $.i18n._('dead_sample'));
+        $("#samples_mitocohondria_distribution_form_text").text($.i18n._('samples_mitocohondria_distribution_form_text'));
+        $('#example_mitocohondria_grouped').html($.i18n._('example_mitocohondria_grouped'));
+        $('#mitocohondria_grouped_sample').prop('title', $.i18n._('mitocohondria_grouped_sample'));
+        $('#example_mitocohondria_scattered').html($.i18n._('example_mitocohondria_scattered'));
+        $('#mitocohondria_scattered_sample').prop('title', $.i18n._('mitocohondria_scattered_sample'));
+        $("#samples_release_form_text").html($.i18n._('samples_release_form_text'));
+        $('#example_release').html($.i18n._('example_release'));
+        $('#release_sample').prop('title', $.i18n._('release_sample'));
+        $("#samples_remarks_form_text").html($.i18n._('samples_remarks_form_text'));
+        $('#example_multinucleated_cell').html($.i18n._('example_multinucleated_cell'));
+        $('#multinucleated_cell_sample').prop('title', $.i18n._('multinucleated_cell_sample'));
+        $("#finish_button").text($.i18n._('finish_button'));
+        $('#finish_button').prop('title', $.i18n._('finish_button_title'));
+        $('#left_arrow').prop('title', $.i18n._('left_arrow'));
+        $('#progress_bar_img').prop('title', $.i18n._('progress_bar_img'));
+        $('#right_arrow').prop('title', $.i18n._('right_arrow'));
+        $('#messages_answer_saved').html($.i18n._('messages_answer_saved'));
+        $('#messages_loading').html($.i18n._('messages_loading'));
+        $('#messages_completed').html($.i18n._('messages_completed'));
+        $('#messages_all_tasks').html($.i18n._('messages_all_tasks'));
+        $('#messages_go_back').html($.i18n._('messages_go_back'));
+        $('#messages_check_other').html($.i18n._('messages_check_other'));
+        $('#messages_error').html($.i18n._('messages_error'));
+        $('#dialog_end_text').html($.i18n._('dialog_end_text'));
+        $("#questionnaire_text_1").text($.i18n._('questionnaire_text_1'));
+        $("#questionnaire_text_2").text($.i18n._('questionnaire_text_2'));
+        $("#close_dialog_button_text").text($.i18n._('close_dialog_button_text'));
+        $("#questionnaire_link").attr("href", $.i18n._('questionnaire_link'));
+        $("#didactic_unit_download").attr("href", $.i18n._('didactic_unit_download'));
+        $("#didactic_unit_icon_download").attr("href", $.i18n._('didactic_unit_download'));
+        $('#didactic_unit_icon').prop('title', $.i18n._('didactic_unit_icon_download_title'));
+        $("#questionnaire_ref").attr("href", $.i18n._('questionnaire_link'));
+        $('#questionnaire_icon').prop('title', $.i18n._('questionnaire_link_title'));
+}); //Internationalization using jquery.i18n
+
+// Clear the whole inputs of the document
+// Input selectors: http://www.mkyong.com/jquery/jquery-form-selectors-example/
+function clearInputs() {
+  
+  // Clear the whole input texts
+  //$('input:text').val("");
+  
+  // Clear the whole input text areas
+  $('textarea').val("");
+  //$('textarea#remarks_textarea').val(""); console.log("cleaning");
+  
+  // Clear the whole input radio elements
+  // Get the radio elements
+  var inputRadioElements = $('input:radio');
+  var nInputRadioElements = inputRadioElements.length;
+  
+  // Go through the array of radio elements checking everyone as false
+  for (i=0; i<nInputRadioElements; i++){
+        inputRadioElements[i].checked = false;
+  }
+}
+
+// Switch the image to be analysed in order to show the one of the proper channel: normal, blue or green
+function changeChannel(channel){
+        
+        switch(channel)
+        {
+                case 'normal':
+                        // Normal channel
+                        $('#analysis_photo').show();
+                        $('#analysis_photo_blue').hide();
+                        $('#analysis_photo_green').hide();
+                        
+                        $('input:radio[name=channel]')[0].checked = true;
+                        
+                        break;
+                case 'blue':
+                        // Blue channel
+                        $('#analysis_photo').hide();
+                        $('#analysis_photo_blue').show();
+                        $('#analysis_photo_green').hide();
+                        
+                        $('input:radio[name=channel]')[1].checked = true;
+                        
+                        break;
+                case 'green':
+                        // Green channel
+                        $('#analysis_photo').hide();
+                        $('#analysis_photo_blue').hide();
+                        $('#analysis_photo_green').show();
+                        
+                        $('input:radio[name=channel]')[2].checked = true;
+                        
+                        break;
+                default:
+                        alert($.i18n._('alert_unknown_channel'));
+        }              
+}
+
+// Load the new uTask 
+//      Show the corresponding form, depending on the current uTask
+//      Change the background to white, since in every case it should be white (not marked as red, since no data has been submitted yet when changing the uTask)
+//      Switch the channel for the photo to be analysed according to the uTask
+function loaduTask() {
+        
+    switch(currentuTask)
+    {
+        case 0:
+                // uTask=0, amount of cells form
+                $('#alive_form').show();
+                $('#samples_alive_form').show();
+                $('#alive_form_info').show();
+                $('#release_form').hide();
+                $('#samples_release_form').hide();
+                $('#release_form_info').hide();
+                $('#left_arrow').hide();
+                $('#left_arrow_response').hide();
+                $('#right_arrow').show();
+                $('#right_arrow_response').show();
+                changeChannel('normal');
+                
+                // Clear the canvas and the array of results
+                clearCanvas();
+                
+                // Set the mode for the canvas
+                changeMode('alive');
+                
+                // Set the proper title and step
+                $("#title_text").html($.i18n._('title_text1'));
+                $("#progress_bar_img").attr('src', $.i18n._('progress_bar_img1'));
+                
+                // Set the background white
+                markAsWhite("cells_amount");
+                
+                break;
+        case 1:
+                // uTask=1, release form
+                $('#alive_form').hide();
+                $('#samples_alive_form').hide();
+                $('#alive_form_info').hide();
+                $('#release_form').show();
+                $('#samples_release_form').show();
+                $('#release_form_info').show();
+                changeChannel('normal');  
+
+                // Clear the canvas and the array of results
+                clearCanvas();
+                
+                // Set the mode for the canvas
+                changeMode('release');
+                
+                // Set the proper title and step
+                $("#title_text").html($.i18n._('title_text3'));
+                $("#progress_bar_img").attr('src', $.i18n._('progress_bar_img2'));
+                
+                break;
+        case 2:
+                // uTask=2, mitocohondrias form for the distribution
+                $('#release_form').hide();
+                $('#samples_release_form').hide();
+                $('#release_form_info').hide();
+                $('#mitocohondria_form_distribution').show();
+                $('#samples_mitocohondria_form_distribution').show();
+                $('#mitocohondria_form_distribution_info').show();
+                changeChannel('green');
+
+                // Clear the canvas and the array of results
+                clearCanvas();
+                
+                $("#missingCellsText").show();
+                missingCells = num_cells;
+                $("#missingCellsText").text($.i18n._('missingCellsText')+missingCells);
+                
+                // Set the mode for the canvas
+                changeMode('grouped');
+                
+                // Set the proper title and step
+                $("#title_text").html($.i18n._('title_text6'));
+                $("#progress_bar_img").attr('src', $.i18n._('progress_bar_img3'));
+                
+                // Set the background white
+                markAsWhite("mitocohondria_distribution");
+          
+                break;
+        case 3:
+                // uTask=3, remarks form
+                $('#mitocohondria_form_distribution').hide();
+                $('#samples_mitocohondria_form_distribution').hide();
+                $('#mitocohondria_form_distribution_info').hide();
+                $('#remarks_form').show();
+                $('#samples_remarks_form').show();
+                $('#remarks_form_info').show();
+                $('#right_arrow').hide();
+                $('#right_arrow_response').hide();
+                $('#finish_button').show();
+                changeChannel('normal');  
+                
+                // Clear the canvas and the array of results
+                clearCanvas();
+                
+                // Hide the help for the number of cells
+                $("#missingCellsText").hide();
+                
+                // Set the mode for the canvas
+                changeMode('multinuclei');
+                
+                // Set the proper title and step
+                $("#title_text").html($.i18n._('title_text9'));
+                $("#progress_bar_img").attr('src',  $.i18n._('progress_bar_img4'));
+                
+                break;
+        default:
+                alert("Trying to load a wrong uTask");
+    }
+    
+    // Set the uTask id label
+    var auxTask = currentuTask+1;
+    $("#utask-id").text(auxTask);
+}
+
+// Function to mark as white the background of the corresponding input item
+function markAsWhite(item) {
+    
+    if (item == "cells_amount") {
+        $("input[name=cells_alive]").css({'border' : '1px solid #CCCCCC'});
+        $("input[name=cells_dead]").css({'border' : '1px solid #CCCCCC'});
+        $("input[name=cells_dont_know]").css({'border' : '1px solid #CCCCCC'});
+    }
+    
+    if (item == "mitocohondria_distribution") {
+        $("#mitocohondria_distribution_grouped_td").css({'border' : '2px solid rgba(255, 51, 51, 0)'});
+        $("#mitocohondria_distribution_scattered_td").css({'border' : '2px solid rgba(255, 51, 51, 0)'});
+        $("#mitocohondria_distribution_notsure_td").css({'border' : '2px solid rgba(255, 51, 51, 0)'});
+    }
+}
+
+// Function to mark as read the background of the corresponding input item
+function markAsRed(item) {
+    
+    if (item == "cells_amount") {
+        $("alive_form").css({'border' : '1px solid #FF3333'});
+    }
+    
+    if (item == "mitocohondria_distribution") {
+        $("#responses").css({'border' : '2px solid rgba(255, 51, 51, 1)'});
+    }
+}
+
+// Function to get the results from the forms
+// Returns: 0 if everything ok
+//          -1 there are problems in the results
+function resultsGathering(uTask) {
+    
+    errors = "";
+    
+    switch(currentuTask)
+    {
+        case 0:
+                // uTask=0, amount of cells form
+                if (arrayResults.length == 0){
+                        // No result typed
+                        errors = errors+$.i18n._('error2');
+                }
+                else {
+                        // Save the amount of cells
+                        num_cells = arrayResults.length;
+                        
+                        result.cells_alive = 0;
+                        result.cells_dead = 0;
+                        result.cells_dont_know = 0;
+                        result.alive_array = new Array();
+                        for (var i=0;i<arrayResults.length;i++){
+                            if (arrayResults[i][0] == 'alive')
+                                result.cells_alive = result.cells_alive + 1;
+                            else if (arrayResults[i][0] == 'dead')
+                                result.cells_dead = result.cells_dead + 1;
+                            else
+                                result.cells_dont_know = result.cells_dont_know + 1;
+                            
+                            result.alive_array.push(arrayResults[i]);
+                        }
+                        
+                        // Initialize the array of results
+                        arrayResults = new Array ();
+                }
+          
+                break;
+        case 1:
+                // uTask=1, release form
+                if (arrayResults.length > num_cells){
+                        // No result typed
+                        errors = errors+$.i18n._('error3')+arrayResults.length+$.i18n._('error6')+num_cells+$.i18n._('error5');
+                }
+                else {
+                    result.release_yes = arrayResults.length;
+                    result.release_array = new Array();
+                    for (var i=0;i<arrayResults.length;i++)
+                        result.release_array.push(arrayResults[i]);
+                        
+                    // Initialize the array of results
+                    arrayResults = new Array ();
+                }
+                
+                break;
+        case 2:
+                // uTask=2, mitocohondria form for their distribution
+                if (arrayResults.length != num_cells){
+                        // Result doesn't match
+                        errors = errors+$.i18n._('error3')+arrayResults.length+$.i18n._('error4')+num_cells+$.i18n._('error5');
+                }
+                else {
+                    result.mitocohondria_grouped = 0;
+                    result.mitocohondria_scattered = 0;
+                    result.mitocohondria_distribution_notsure = 0;
+                    result.mitocohondria_distribution_array = new Array();
+                    for (var i=0;i<arrayResults.length;i++){
+                        if (arrayResults[i][0] == 'mitocohondria_distribution_grouped')
+                            result.mitocohondria_grouped = result.mitocohondria_grouped + 1;
+                        else if (arrayResults[i][0] == 'mitocohondria_distribution_scattered')
+                            result.mitocohondria_scattered = result.mitocohondria_scattered + 1;
+                        else
+                            result.mitocohondria_distribution_notsure = result.mitocohondria_distribution_notsure + 1;
+                            
+                        result.mitocohondria_distribution_array.push(arrayResults[i]);
+                    }
+                       
+                    // Initialize the array of results
+                    arrayResults = new Array ();
+                }
+
+                break;
+        case 3:
+                // uTask=3, remarks form
+                if (arrayResults.length > num_cells){
+                        // No result typed
+                        errors = errors+$.i18n._('error3')+arrayResults.length+$.i18n._('error6')+num_cells+$.i18n._('error5');
+                }
+                else {
+                    result.multinuclei = arrayResults.length;
+                    result.multinuclei_array = new Array();
+                    for (var i=0;i<arrayResults.length;i++)
+                        result.multinuclei_array.push(arrayResults[i]);
+    
+                    result.remarks = $('textarea').val();
+                
+                    result.task = basename;
+                }
+
+                break;
+        default:
+                alert($.i18n._('alert_wrong_uTask'));
+    }
+    
+    if ((errors != "")&&(uTask == 'next')) {
+        alert(errors);
+        return -1;
+    }
+    else {
+        console.log(result);
+        
+        return 0;
+    }
+}
+
+// Function to avoid a character to be inserted in the whole input fields (that excludes the text area)
+// In such a way, only numbers can be inserted
+// Code example from: http://stackoverflow.com/questions/995183/how-to-allow-only-numeric-0-9-in-html-inputbox-using-jquery
+//                    https://snipt.net/GerryEng/jquery-making-textfield-only-accept-numeric-values/
+$(document).ready(function() {
+    $('input').keydown(function(event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault(); 
+            }   
+        }
+    });
+}); 
+
+$(function() {
+
+    // Enable tooltips
+    $( document ).tooltip({
+        track: true
+    });
+
+    $( "#dialog-info" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      maxHeight: 590,
+      maxWidth: 600,
+      minHeight: 590,
+      minWidth: 600
+    });
+   
+    $( "#opener-info" ).click(function() {
+      $( "#dialog-info" ).dialog( "open" );
+    });
+});
+
+$("#dialog-info").parent().css({'z-index' : '10000'});
+
+$(function() {
+   $( "#dialog-video" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      maxHeight: 475,
+      maxWidth: 575,
+      minHeight: 475,
+      minWidth: 575
+   });
+   
+   $( "#opener-video" ).click(function() {
+      $( "#dialog-video" ).dialog( "open" );
+   });
+});
+
+$(function() {
+   $( "#dialog-vish" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      resizable: false,
+      maxHeight: 750,
+      maxWidth: 910,
+      minHeight: 750,
+      minWidth: 910
+   });
+   
+   $( "#opener-vish" ).click(function() {
+      $( "#dialog-vish" ).dialog( "open" );
+   });
+});
+
+$(function() {
+   $( "#dialog-end" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      maxHeight: 250,
+      maxWidth: 300,
+      minHeight: 250,
+      minWidth: 300
+   });
+});
+
+// Function to submit and save the corresponding uTask
+function changeuTask(uTask) {
+    if (resultsGathering(uTask) != -1) {
+    console.log(uTask, currentuTask);
+    
+        if ((currentuTask == 3)&&(uTask == 'next')){
+                // The task has been completed
+                submitTask();
+        }
+        else {
+                if (uTask == 'next') {
+                        // Move to the next uTask
+                        currentuTask = currentuTask + 1;
+                }
+                else {
+                        // Move to the previous uTask
+                        currentuTask = currentuTask - 1;
+                }
+        
+                // Load the new uTask
+                loaduTask();
+        }
+    }
+}
+
+// Function to submit and save the TaskRun in PyBossa
+function submitTask() {
+     
+    pybossa.userProgress('cellspotting').done(function(data){
+        $('#questionnaire').show();
+        console.log("Show questionnaire");
+        console.log (data.done);
+    });
+    
+    $.blockUI({ message: $('#dialog-end'), css: { width: '300px' }});    
+    pybossa.saveTask(task_id_aux, result).done(function() {
+        deferred_global.resolve();
+    });
+
+}
+
+$('#close_dialog_button').click(function() { 
+        $.unblockUI(); 
+        $('#questionnaire').hide();
+}); 
+
+  function distance (coord1, coord2) {
+    return Math.sqrt((Math.pow((coord2[0]-coord1[0]),2) +Math.pow((coord2[1]-coord1[1]),2))); 
+  }
+  
+  
+  function selectElement (){
+    
+    if (mode=='alive')
+        return document.getElementById("alive_icon");
+    else if (mode=='dead')
+        return document.getElementById("dead_icon");
+    else if (mode=='not_sure_alive')
+        return document.getElementById("notsure_icon");
+    else if (mode=='grouped')
+        return document.getElementById("grouped_icon");
+    else if (mode=='scattered')
+        return document.getElementById("scattered_icon");
+    else if (mode=='not_sure_mitochondria')
+        return document.getElementById("notsure_icon");
+    else if (mode=='release')
+        return document.getElementById("release_icon");
+    else if (mode=='multinuclei')
+        return document.getElementById("multinuclei_icon");
+  }
+
+  // This painting tool works like a drawing pencil which tracks the mouse 
+  // movements.
+  function tool_pencil () {
+    var tool = this;
+
+    // This is called when you release the mouse button.
+    this.mouseup = function (ev) {
+      if (adding == true) {
+        if ((arrayResults.length < num_cells)||(currentuTask == 0)) {
+            // Add a component to the canvas
+            var img = selectElement();
+            contextResponses.drawImage(img, ev._x-15, ev._y-15);
+            // Add the component to the array of results containing: type of element, coordinates.
+            arrayResults.push([mode, ev._x, ev._y]);
+        
+            if (missingCells > 0){
+                missingCells = missingCells - 1;
+                $("#missingCellsText").text($.i18n._('missingCellsText')+missingCells);
+            }
+        }
+        else {
+            alert($.i18n._('tooManyCells'));
+        }
+      }
+      else {
+        
+        // Create an array with the elements to be removed from the array of results.
+        var arrayToRemove = new Array();
+        for (var i=0;i<arrayResults.length;i++){
+            if (distance([ev._x,ev._y],[arrayResults[i][1],arrayResults[i][2]]) < 15) {
+              arrayToRemove.push(i);
+            }
+        }
+        
+        // Remove elements from the list.
+        for (var i=0;i<arrayToRemove.length;i++){
+            arrayResults.splice(arrayToRemove[arrayToRemove.length-i-1], 1);
+        }
+
+        // Remove the whole components from the canvas.
+        contextResponses.clearRect(0, 0, canvas.width, canvas.height);
+        // Saves temporarily the current mode, while components are redrawing.
+        var modeAux = mode;
+        
+        // Redraw the whole components checking the type of element.
+        var img;
+        for (var i=0;i<arrayResults.length;i++){
+            mode = arrayResults[i][0];
+            img = selectElement();
+            contextResponses.drawImage(img, arrayResults[i][1]-15, arrayResults[i][2]-15);
+        }
+        
+        // Restore the current mode value.
+        mode = modeAux;
+        
+        if ((missingCells < num_cells) && (arrayResults.length < num_cells)) {
+            missingCells = num_cells - arrayResults.length;
+            $("#missingCellsText").text($.i18n._('missingCellsText')+missingCells);
+        }
+      }
+    };
+  }
+
+  function init () {
+    // Find the canvas element.
+    canvas = document.getElementById('canvasResponses');
+    if (!canvas) {
+      alert('Error: I cannot find the canvas element!');
+      return;
+    }
+
+    if (!canvas.getContext) {
+      alert('Error: no canvas.getContext!');
+      return;
+    }
+
+    // Get the 2D canvas context.
+    contextResponses = canvas.getContext('2d');
+    if (!contextResponses) {
+      alert('Error: failed to getContext!');
+      return;
+    }
+
+    // Pencil tool instance.
+    tool = new tool_pencil();
+
+    adding = true;
+    mode = 'alive';
+
+    // Attach the mousedown, mousemove and mouseup event listeners.
+    canvas.addEventListener('mouseup',   ev_canvas, false);
+  }
+
+  // The general-purpose event handler. This function just determines the mouse 
+  // position relative to the canvas element.
+  function ev_canvas (ev) {
+    if (ev.layerX || ev.layerX == 0) { // Firefox
+      ev._x = ev.layerX;
+      ev._y = ev.layerY;
+    } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+      ev._x = ev.offsetX;
+      ev._y = ev.offsetY;
+    }
+
+    // Call the event handler of the tool.
+    var func = tool[ev.type];
+    if (func) {
+      func(ev);
+    }
+  }
+  
+  init();
+
+function clearCanvas () {
+    
+    // Remove the whole components from the canvas.
+    contextResponses.clearRect(0, 0, canvas.width, canvas.height);
+                
+    // Initialize the array of results
+    arrayResults = new Array ();
+    
+    if (missingCells != -1) {
+        missingCells = num_cells;
+        $("#missingCellsText").text($.i18n._('missingCellsText')+missingCells);
+    }
+}
+
+function changeMode (change) {
+    
+    adding = true;
+    mode = change;
+    if (mode == 'alive') {
+        $("#alive_img").attr('src', $.i18n._('alive_text_hover'));
+        $("#dead_img").attr('src', $.i18n._('dead_text'));
+        $("#not_sure_alive_img").attr('src', $.i18n._('not_sure_alive_text'));
+        $("#remove_alive_img").attr('src', $.i18n._('remove_text'));
+        $("#removeAll_alive_img").attr('src', $.i18n._('removeAll_text'));
+    }
+    else if (mode == 'dead') {
+        $("#alive_img").attr('src', $.i18n._('alive_text'));
+        $("#dead_img").attr('src', $.i18n._('dead_text_hover'));
+        $("#not_sure_alive_img").attr('src', $.i18n._('not_sure_alive_text'));
+        $("#remove_alive_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (mode == 'not_sure_alive') {
+        $("#alive_img").attr('src', $.i18n._('alive_text'));
+        $("#dead_img").attr('src', $.i18n._('dead_text'));
+        $("#not_sure_alive_img").attr('src', $.i18n._('not_sure_alive_text_hover'));
+        $("#remove_alive_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (mode == 'remove_alive') {
+        adding = false;
+        $("#alive_img").attr('src', $.i18n._('alive_text'));
+        $("#dead_img").attr('src', $.i18n._('dead_text'));
+        $("#not_sure_alive_img").attr('src', $.i18n._('not_sure_alive_text'));
+        $("#remove_alive_img").attr('src', $.i18n._('remove_text_hover'));
+    }
+    if (mode == 'grouped') {
+        $("#grouped_img").attr('src', $.i18n._('grouped_text_hover'));
+        $("#scattered_img").attr('src', $.i18n._('scattered_text'));
+        $("#not_sure_mitochondria_img").attr('src', $.i18n._('not_sure_mitochondria_text'));
+        $("#remove_mitochondria_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (mode == 'scattered') {
+        $("#grouped_img").attr('src', $.i18n._('grouped_text'));
+        $("#scattered_img").attr('src', $.i18n._('scattered_text_hover'));
+        $("#not_sure_mitochondria_img").attr('src', $.i18n._('not_sure_mitochondria_text'));
+        $("#remove_mitochondria_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (mode == 'not_sure_mitochondria') {
+        $("#grouped_img").attr('src', $.i18n._('grouped_text'));
+        $("#scattered_img").attr('src', $.i18n._('scattered_text'));
+        $("#not_sure_mitochondria_img").attr('src', $.i18n._('not_sure_mitochondria_text_hover'));
+        $("#remove_mitochondria_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (mode == 'remove_mitochondria') {
+        adding = false;
+        $("#grouped_img").attr('src', $.i18n._('grouped_text'));
+        $("#scattered_img").attr('src', $.i18n._('scattered_text'));
+        $("#not_sure_mitochondria_img").attr('src', $.i18n._('not_sure_mitochondria_text'));
+        $("#remove_mitochondria_img").attr('src', $.i18n._('remove_text_hover'));
+    }    
+    else if (mode == 'release') {
+        $("#release_img").attr('src', $.i18n._('release_text_hover'));
+        $("#remove_release_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (mode == 'remove_release') {
+        adding = false;
+        $("#release_img").attr('src', $.i18n._('release_text'));
+        $("#remove_release_img").attr('src', $.i18n._('remove_text_hover'));
+    }    
+    else if (mode == 'multinuclei') {
+        $("#multinuclei_img").attr('src', $.i18n._('multinuclei_text_hover'));
+        $("#remove_multinuclei_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (mode == 'remove_multinuclei') {
+        adding = false;
+        $("#multinuclei_img").attr('src', $.i18n._('multinuclei_text'));
+        $("#remove_multinuclei_img").attr('src', $.i18n._('remove_text_hover'));
+    }    
+}
+
+function onHover (change) {
+    if (change == 'alive') {
+        $("#alive_img").attr('src', $.i18n._('alive_text_hover'));
+    }
+    else if (change == 'dead') {
+        $("#dead_img").attr('src', $.i18n._('dead_text_hover'));
+    }
+    else if (change == 'not_sure_alive') {
+        $("#not_sure_alive_img").attr('src', $.i18n._('not_sure_alive_text_hover'));
+    }
+    else if (change == 'remove_alive') {
+        $("#remove_alive_img").attr('src', $.i18n._('remove_text_hover'));
+    }
+    else if (change == 'removeAll_alive') {
+        $("#removeAll_alive_img").attr('src', $.i18n._('removeAll_text_hover'));
+    }
+    else if (change == 'grouped') {
+        $("#grouped_img").attr('src', $.i18n._('grouped_text_hover'));
+    }
+    else if (change == 'scattered') {
+        $("#scattered_img").attr('src', $.i18n._('scattered_text_hover'));
+    }
+    else if (change == 'not_sure_mitochondria') {
+        $("#not_sure_mitochondria_img").attr('src', $.i18n._('not_sure_mitochondria_text_hover'));
+    }
+    else if (change == 'remove_mitochondria') {
+        $("#remove_mitochondria_img").attr('src', $.i18n._('remove_text_hover'));
+    }
+    else if (change == 'removeAll_mitochondria') {
+        $("#removeAll_mitochondria_img").attr('src', $.i18n._('removeAll_text_hover'));
+    }
+    else if (change == 'release') {
+        $("#release_img").attr('src', $.i18n._('release_text_hover'));
+    }
+    else if (change == 'remove_release') {
+        $("#remove_release_img").attr('src', $.i18n._('remove_text_hover'));
+    }
+    else if (change == 'removeAll_release') {
+        $("#removeAll_release_img").attr('src', $.i18n._('removeAll_text_hover'));
+    }
+    else if (change == 'multinuclei') {
+        $("#multinuclei_img").attr('src', $.i18n._('multinuclei_text_hover'));
+    }
+    else if (change == 'remove_multinuclei') {
+        $("#remove_multinuclei_img").attr('src', $.i18n._('remove_text_hover'));
+    }
+    else if (change == 'removeAll_multinuclei') {
+        $("#removeAll_multinuclei_img").attr('src', $.i18n._('removeAll_text_hover'));
+    }
+}
+
+function onHoverOut (change) {
+    if ((change == 'alive') && (mode != 'alive')) {
+        $("#alive_img").attr('src', $.i18n._('alive_text'));
+    }
+    else if ((change == 'dead') && (mode != 'dead')) {
+        $("#dead_img").attr('src', $.i18n._('dead_text'));
+    }
+    else if ((change == 'not_sure_alive') && (mode != 'not_sure_alive')) {
+        $("#not_sure_alive_img").attr('src', $.i18n._('not_sure_alive_text'));
+    }
+    else if ((change == 'remove_alive') && (mode != 'remove_alive')) {
+        $("#remove_alive_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (change == 'removeAll_alive') {
+        $("#removeAll_alive_img").attr('src', $.i18n._('removeAll_text'));
+    }
+    else if ((change == 'grouped') && (mode != 'grouped')) {
+        $("#grouped_img").attr('src', $.i18n._('grouped_text'));
+    }
+    else if ((change == 'scattered') && (mode != 'scattered')) {
+        $("#scattered_img").attr('src', $.i18n._('scattered_text'));
+    }
+    else if ((change == 'not_sure_mitochondria') && (mode != 'not_sure_mitochondria')) {
+        $("#not_sure_mitochondria_img").attr('src', $.i18n._('not_sure_mitochondria_text'));
+    }
+    else if ((change == 'remove_mitochondria') && (mode != 'remove_mitochondria')) {
+        $("#remove_mitochondria_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (change == 'removeAll_mitochondria') {
+        $("#removeAll_mitochondria_img").attr('src', $.i18n._('removeAll_text'));
+    }
+    else if ((change == 'release') && (mode != 'release')) {
+        $("#release_img").attr('src', $.i18n._('release_text'));
+    }
+    else if ((change == 'remove_release') && (mode != 'remove_release')) {
+        $("#remove_release_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (change == 'removeAll_release') {
+        $("#removeAll_release_img").attr('src', $.i18n._('removeAll_text'));
+    }
+    else if ((change == 'multinuclei') && (mode != 'multinuclei')) {
+        $("#multinuclei_img").attr('src', $.i18n._('multinuclei_text'));
+    }
+    else if ((change == 'remove_multinuclei') && (mode != 'remove_multinuclei')) {
+        $("#remove_multinuclei_img").attr('src', $.i18n._('remove_text'));
+    }
+    else if (change == 'removeAll_multinuclei') {
+        $("#removeAll_multinuclei_img").attr('src', $.i18n._('removeAll_text'));
+    }
+}
+
+  
+// vim:set spell spl=en fo=wan1croql tw=80 ts=2 sw=2 sts=2 sta et ai cin fenc=utf-8 ff=unix:
+
+function loadUserProgress() {
+
+    pybossa.userProgress('cellspotting').done(function(data){
+        var pct = Math.round((data.done*100)/data.total);
+        $("#progress").css("width", pct.toString() +"%");
+        $("#progress").attr("title", pct.toString() + "% completed!");
+        //$("#progress").tooltip({'placement': 'left'}); 
+        $("#total").text(data.total);
+        $("#done").text(data.done);
+        
+        console.log (data.total);
+        console.log (data.done);
+    });
+}
+
+pybossa.taskLoaded(function(task, deferred) {
+    if ( !$.isEmptyObject(task) ) {
+        var img = $('<img id="photo-currentTask-img" />');
+        var imgBlue = $('<img id="photo-currentTask-blue-img" />');
+        var imgGreen = $('<img id="photo-currentTask-green-img" />');
+        img.load(function() {
+            // continue as soon as the image is loaded
+            deferred.resolve(task);
+        });
+        img.attr('src', task.info.link+".jpg").css('width', 524);
+        imgBlue.attr('src', task.info.link+"-blue.png").css('width', 524);
+        imgGreen.attr('src', task.info.link+"-green.png").css('width', 524);
+        //img.addClass('img-polaroid');
+        task.info.image = img;
+        task.info.imageBlue = imgBlue;
+        task.info.imageGreen = imgGreen;
+    }
+    else {
+        deferred.resolve(task);
+    }
+});
+
+pybossa.presentTask(function(task, deferred) {
+    if ( !$.isEmptyObject(task) ) {
+        loadUserProgress();
+        basename = task.info.link; 
+        //lastuTask = task.info.n_utasks-1;
+        task_id_aux = task.id;
+                
+        // Hide all the forms to be loaded separately depending on the uTask and so its information
+        $('#alive_form').hide();
+        $('#samples_alive_form').hide();
+        $('#release_form').hide();
+        $('#samples_release_form').hide();
+        $('#release_form_info').hide();
+        $('#mitocohondria_form_distribution').hide();
+        $('#samples_mitocohondria_form_distribution').hide();
+        $('#mitocohondria_form_distribution_info').hide();
+        $('#remarks_form').hide();
+        $('#samples_remarks_form').hide();
+        $('#remarks_form_info').hide();
+        $("#missingCellsText").hide();
+        
+        $('#remarks').hide();
+        $('#finish_button').hide();
+        
+        // Show this div now, so all the divs are not displayed during the loading
+        $('#analysis_table').show();
+        
+        // Set initial values for a task of the following variables and load the uTask
+        currentuTask = 0;
+        loaduTask();
+            
+        // Clear the inputs
+        clearInputs();
+        
+        var aux = $(task.info.image).attr("src");
+        $("#photo-currentTask").attr("src",aux);
+        aux = $(task.info.imageBlue).attr("src");
+        $("#photo-currentTask-blue").attr("src",aux);
+        aux = $(task.info.imageGreen).attr("src");
+        $("#photo-currentTask-green").attr("src",aux);
+        
+        // Embed the video
+        positionVideo = basename.lastIndexOf('-');
+        basenameVideo = basename.substr(0,positionVideo);
+        document.getElementById("dialog-video").innerHTML = '<video width="550" height="411" controls autoplay><source src="'+basenameVideo+'.ogg" type="video/ogg"><source src="'+basenameVideo+'.mp4" type="video/mp4"><source src="'+basenameVideo+'.webm" type="video/webm"><object data="'+basenameVideo+'.mp4" width="550" height="411"><embed width="550" height="411" src="'+basenameVideo+'.swf"></object></video>';
+        
+        
+        // Set the channel radio button to checked
+        $('input:radio[name=channel]')[0].checked = true;
+        
+        // Save deferred object as a global variable in order to be called during task submission
+        deferred_global = deferred
+        
+        $("#loading").hide();
+    }
+    else {
+
+        $(".skeleton").hide();
+        $("#loading").hide();
+        $("#finish").fadeIn(500);
+    }
+});
+
+pybossa.run('cellspotting');
+</script>

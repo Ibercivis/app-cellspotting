@@ -1,0 +1,7 @@
+{
+    "name": "Cell Spotting",
+    "short_name": "cellspotting",
+    "thumbnail": "http://www.olympusfluoview.com/gallery/cells/hela/images/helalarge2.jpg",
+    "description": "Analysis of HeLa cells for apoptosis research",
+    "question": "Are the cells still alive?"
+}
