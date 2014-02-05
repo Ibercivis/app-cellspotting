@@ -36,9 +36,9 @@ Check the original photo here: http://www.flickr.com/photos/mcgraths/3289448299/
 Creating the tasks
 ==================
 
-python createTasks.py -u http://pybossa.ibercivis.es:5000 -k API-KEY -i static/input/ -f CellImages.csv -c 
+python createTasks.py -u server -k API-KEY -i static/input/ -f CellImages.csv -c 
 
-scp cells-internationalization.js root@test.pybossa.socientize.eu:/home/pybossa/pybossa/static/js/languages/.
+scp cells-internationalization.js user@server
 
-python createTasks.py -u http://test.pybossa.socientize.eu/pybossa -k e041979b-ca1d-4379-8a95-0daea70a2e13 -i static/input/ -f CellImagesData.csv -t
+python createTasks.py -u server -k API-KEY -i static/input/ -f CellImagesData.csv -t
 
